@@ -1,4 +1,4 @@
-# Victim Cybercrime Assistant (Minor Project → Scalable Major Project)
+# Victim Cybercrime Assistant
 
 ## Features
 - **News Section** → Fetch cybersecurity news (API/placeholder).
