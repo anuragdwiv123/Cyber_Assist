@@ -1,0 +1,481 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <div class="header-content">
+            <h1>Security Resources</h1>
+            <p>Expert guidance and emergency contacts for cybersecurity incidents</p>
+        </div>
+    </div>
+</div>
+
+<section class="resources-section section">
+    <div class="container">
+        <div class="resources-grid">
+            <!-- Helplines Section -->
+            <div class="resource-category">
+                <h2>Emergency Helplines</h2>
+                <p class="category-description">24/7 cybercrime reporting centers worldwide</p>
+                
+                <div class="helplines-list">
+                    {% for helpline in helplines %}
+                    <div class="helpline-card card">
+                        <div class="helpline-header">
+                            <div class="country-info">
+                                <h4>{{ helpline.country }}</h4>
+                                <span class="agency">{{ helpline.agency }}</span>
+                            </div>
+                            <div class="availability">
+                                <i data-feather="clock"></i>
+                                <span>{{ helpline.available }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="helpline-contacts">
+                            <div class="contact-item">
+                                <i data-feather="phone"></i>
+                                <div class="contact-details">
+                                    <label>Phone</label>
+                                    <a href="tel:{{ helpline.phone }}" class="contact-value">{{ helpline.phone }}</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i data-feather="globe"></i>
+                                <div class="contact-details">
+                                    <label>Website</label>
+                                    <a href="https://{{ helpline.website }}" target="_blank" class="contact-value">{{ helpline.website }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="helpline-actions">
+                            <a href="tel:{{ helpline.phone }}" class="btn">
+                                <i data-feather="phone"></i>
+                                Call Now
+                            </a>
+                            <a href="https://{{ helpline.website }}" target="_blank" class="btn btn-outline">
+                                <i data-feather="external-link"></i>
+                                Visit Site
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Security Guides Section -->
+            <div class="resource-category">
+                <h2>Security Guides</h2>
+                <p class="category-description">Essential cybersecurity knowledge for everyone</p>
+                
+                <div class="guides-grid">
+                    {% for guide in guides %}
+                    <div class="guide-card card">
+                        <div class="guide-content">
+                            <div class="guide-icon">
+                                <i data-feather="book-open"></i>
+                            </div>
+                            <h4>{{ guide.title }}</h4>
+                            <p>{{ guide.description }}</p>
+                            <div class="guide-placeholder">
+                                <div class="placeholder-content">
+                                    <div class="placeholder-line"></div>
+                                    <div class="placeholder-line"></div>
+                                    <div class="placeholder-line short"></div>
+                                </div>
+                                <div class="placeholder-actions">
+                                    <span class="read-guide">Read Guide</span>
+                                    <i data-feather="arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Emergency Action Section -->
+<section class="emergency-section">
+    <div class="container">
+        <div class="emergency-banner card">
+            <div class="emergency-content">
+                <div class="emergency-icon">
+                    <i data-feather="alert-triangle"></i>
+                </div>
+                <div class="emergency-text">
+                    <h3>Experiencing an Active Cyber Attack?</h3>
+                    <p>Don't panic. Take immediate action to protect yourself and report the incident.</p>
+                </div>
+                <div class="emergency-actions">
+                    <a href="/report" class="btn emergency-btn">
+                        <i data-feather="shield"></i>
+                        Report Now
+                    </a>
+                    <a href="/chat" class="btn btn-outline">
+                        <i data-feather="message-circle"></i>
+                        Get Help
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .page-header {
+        background: var(--color-secondary);
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .header-content {
+        text-align: center;
+    }
+
+    .header-content h1 {
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    /* Resources Grid */
+    .resources-grid {
+        display: grid;
+        gap: 4rem;
+    }
+
+    .resource-category h2 {
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .category-description {
+        font-size: 1.1rem;
+        color: var(--color-text-light);
+        margin-bottom: 2rem;
+    }
+
+    /* Helplines */
+    .helplines-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .helpline-card {
+        transition: var(--transition);
+    }
+
+    .helpline-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .helpline-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem 1.5rem 0;
+    }
+
+    .country-info h4 {
+        margin: 0 0 0.25rem 0;
+        color: var(--color-primary);
+    }
+
+    .agency {
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+    }
+
+    .availability {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #22c55e;
+        font-weight: 500;
+    }
+
+    .availability i {
+        width: 16px;
+        height: 16px;
+    }
+
+    .helpline-contacts {
+        padding: 0 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        background: #fafafa;
+        border-radius: var(--border-radius);
+    }
+
+    .contact-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .contact-item i {
+        width: 20px;
+        height: 20px;
+        color: var(--color-accent);
+    }
+
+    .contact-details {
+        flex: 1;
+    }
+
+    .contact-details label {
+        display: block;
+        font-size: 0.8rem;
+        color: var(--color-text-light);
+        margin-bottom: 0.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .contact-value {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .contact-value:hover {
+        color: var(--color-accent);
+        text-decoration: underline;
+    }
+
+    .helpline-actions {
+        display: flex;
+        gap: 1rem;
+        padding: 0 1.5rem 1.5rem;
+    }
+
+    .helpline-actions .btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    /* Guides */
+    .guides-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .guide-card {
+        transition: var(--transition);
+        cursor: pointer;
+    }
+
+    .guide-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .guide-content {
+        padding: 2rem;
+    }
+
+    .guide-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--color-secondary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: var(--color-accent);
+    }
+
+    .guide-icon i {
+        width: 24px;
+        height: 24px;
+    }
+
+    .guide-card h4 {
+        margin-bottom: 0.75rem;
+        color: var(--color-primary);
+    }
+
+    .guide-card p {
+        margin-bottom: 1.5rem;
+        color: var(--color-text-light);
+    }
+
+    /* Guide Placeholder */
+    .guide-placeholder {
+        border-top: 1px solid var(--color-border);
+        padding-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .placeholder-content {
+        flex: 1;
+    }
+
+    .placeholder-line {
+        height: 10px;
+        background: linear-gradient(90deg, var(--color-border) 0%, #f0f0f0 50%, var(--color-border) 100%);
+        border-radius: 5px;
+        margin-bottom: 6px;
+        animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    .placeholder-line.short {
+        width: 60%;
+    }
+
+    @keyframes shimmer {
+        0% { background-position: -200px 0; }
+        100% { background-position: calc(200px + 100%) 0; }
+    }
+
+    .placeholder-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-accent);
+        font-size: 0.9rem;
+        margin-left: 1rem;
+    }
+
+    .placeholder-actions i {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Emergency Section */
+    .emergency-section {
+        background: #fef2f2;
+        padding: 3rem 0;
+        margin-top: 4rem;
+    }
+
+    .emergency-banner {
+        background: var(--color-white);
+        border-left: 4px solid #ef4444;
+    }
+
+    .emergency-content {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .emergency-icon {
+        width: 80px;
+        height: 80px;
+        background: #fef2f2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ef4444;
+        flex-shrink: 0;
+    }
+
+    .emergency-icon i {
+        width: 32px;
+        height: 32px;
+    }
+
+    .emergency-text {
+        flex: 1;
+    }
+
+    .emergency-text h3 {
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .emergency-text p {
+        color: var(--color-text-light);
+        margin: 0;
+    }
+
+    .emergency-actions {
+        display: flex;
+        gap: 1rem;
+        flex-shrink: 0;
+    }
+
+    .emergency-btn {
+        background: #ef4444;
+    }
+
+    .emergency-btn:hover {
+        background: #dc2626;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .helplines-list {
+            grid-template-columns: 1fr;
+        }
+        
+        .guides-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .helpline-actions {
+            flex-direction: column;
+        }
+        
+        .emergency-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 1.5rem;
+        }
+        
+        .emergency-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        .placeholder-actions {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+        
+        .guide-placeholder {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
+
+<script>
+    // Add interactive behaviors for guide cards
+    document.querySelectorAll('.guide-card').forEach(card => {
+        card.addEventListener('click', function() {
+            const title = this.querySelector('h4').textContent;
+            alert(`${title} guide would open here in a real implementation`);
+        });
+    });
+    
+    // Add click tracking for helpline contacts
+    document.querySelectorAll('.contact-value').forEach(contact => {
+        contact.addEventListener('click', function() {
+            // In a real app, this would track usage analytics
+            console.log('Contact clicked:', this.textContent);
+        });
+    });
+</script>
+{% endblock %}

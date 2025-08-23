@@ -1,0 +1,486 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <div class="header-content">
+            <h1>Report Incident</h1>
+            <p>Secure incident reporting system - All communications are encrypted</p>
+        </div>
+    </div>
+</div>
+
+<section class="report-section section">
+    <div class="container">
+        <div class="report-layout">
+            <!-- Email Composition Area -->
+            <div class="email-composer card">
+                <div class="composer-header">
+                    <div class="composer-title">
+                        <i data-feather="mail"></i>
+                        <span>New Incident Report</span>
+                    </div>
+                    <div class="composer-actions">
+                        <button class="btn-icon" title="Attach files">
+                            <i data-feather="paperclip"></i>
+                        </button>
+                        <button class="btn-icon" title="Encrypt">
+                            <i data-feather="lock"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="composer-fields">
+                    <div class="field-row">
+                        <label>To:</label>
+                        <div class="field-content">
+                            <span class="recipient">security@cyberguard.com</span>
+                            <span class="verified">
+                                <i data-feather="check-circle"></i>
+                                Verified
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="field-row">
+                        <label>From:</label>
+                        <input type="email" placeholder="your.email@example.com" class="field-input">
+                    </div>
+                    
+                    <div class="field-row">
+                        <label>Subject:</label>
+                        <input type="text" placeholder="Incident Report - [Brief Description]" class="field-input">
+                    </div>
+                    
+                    <div class="field-row">
+                        <label>Priority:</label>
+                        <select class="field-select">
+                            <option>High - Active threat</option>
+                            <option>Medium - Suspicious activity</option>
+                            <option>Low - General inquiry</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="composer-body">
+                    <div class="formatting-toolbar">
+                        <button class="format-btn"><i data-feather="bold"></i></button>
+                        <button class="format-btn"><i data-feather="italic"></i></button>
+                        <button class="format-btn"><i data-feather="underline"></i></button>
+                        <div class="toolbar-separator"></div>
+                        <button class="format-btn"><i data-feather="list"></i></button>
+                        <button class="format-btn"><i data-feather="link"></i></button>
+                    </div>
+                    
+                    <textarea class="message-input" placeholder="Please describe the incident in detail:
+
+• What happened?
+• When did it occur?
+• What systems/accounts are affected?
+• What evidence do you have?
+• What actions have you already taken?
+
+The more details you provide, the better we can assist you."></textarea>
+                </div>
+                
+                <div class="composer-footer">
+                    <div class="attachment-area">
+                        <div class="attachment-placeholder">
+                            <i data-feather="upload"></i>
+                            <span>Drag files here or click to attach evidence</span>
+                        </div>
+                    </div>
+                    
+                    <div class="send-actions">
+                        <button class="btn btn-outline">Save Draft</button>
+                        <button class="btn">
+                            <i data-feather="send"></i>
+                            Send Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="report-sidebar">
+                <div class="sidebar-card card">
+                    <h4>Security Notice</h4>
+                    <div class="security-indicators">
+                        <div class="indicator">
+                            <i data-feather="shield"></i>
+                            <span>End-to-end encrypted</span>
+                        </div>
+                        <div class="indicator">
+                            <i data-feather="clock"></i>
+                            <span>Response within 2 hours</span>
+                        </div>
+                        <div class="indicator">
+                            <i data-feather="eye-off"></i>
+                            <span>Confidential handling</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-card card">
+                    <h4>Emergency Contacts</h4>
+                    <div class="emergency-list">
+                        <div class="emergency-item">
+                            <strong>US/Canada:</strong>
+                            <a href="tel:1-855-292-3937">1-855-292-3937</a>
+                        </div>
+                        <div class="emergency-item">
+                            <strong>UK:</strong>
+                            <a href="tel:0300-123-2040">0300 123 2040</a>
+                        </div>
+                        <div class="emergency-item">
+                            <strong>Australia:</strong>
+                            <a href="tel:1300-292-371">1300 292 371</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar-card card">
+                    <h4>Incident Types</h4>
+                    <div class="incident-types">
+                        <div class="type-item">Phishing</div>
+                        <div class="type-item">Malware</div>
+                        <div class="type-item">Data Breach</div>
+                        <div class="type-item">Identity Theft</div>
+                        <div class="type-item">Financial Fraud</div>
+                        <div class="type-item">Ransomware</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .page-header {
+        background: var(--color-secondary);
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .header-content {
+        text-align: center;
+    }
+
+    .header-content h1 {
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .header-content p {
+        font-size: 1.1rem;
+        color: var(--color-text-light);
+    }
+
+    /* Layout */
+    .report-layout {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 2rem;
+        align-items: start;
+    }
+
+    /* Email Composer */
+    .email-composer {
+        min-height: 600px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .composer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .composer-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+        color: var(--color-primary);
+    }
+
+    .composer-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .btn-icon {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--color-border);
+        background: var(--color-white);
+        border-radius: var(--border-radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--color-text-light);
+    }
+
+    .btn-icon:hover {
+        background: var(--color-secondary);
+        color: var(--color-primary);
+    }
+
+    /* Composer Fields */
+    .composer-fields {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .field-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        gap: 1rem;
+    }
+
+    .field-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .field-row label {
+        width: 80px;
+        font-weight: 500;
+        color: var(--color-text);
+        flex-shrink: 0;
+    }
+
+    .field-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .recipient {
+        color: var(--color-primary);
+        font-weight: 500;
+    }
+
+    .verified {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: #22c55e;
+        font-size: 0.9rem;
+    }
+
+    .field-input,
+    .field-select {
+        flex: 1;
+        padding: 0.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius);
+        font-family: inherit;
+        transition: var(--transition);
+    }
+
+    .field-input:focus,
+    .field-select:focus {
+        outline: none;
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    }
+
+    /* Composer Body */
+    .composer-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .formatting-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--color-border);
+        background: #fafafa;
+    }
+
+    .format-btn {
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: transparent;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--color-text-light);
+    }
+
+    .format-btn:hover {
+        background: var(--color-white);
+        color: var(--color-primary);
+    }
+
+    .toolbar-separator {
+        width: 1px;
+        height: 20px;
+        background: var(--color-border);
+        margin: 0 0.5rem;
+    }
+
+    .message-input {
+        flex: 1;
+        padding: 1.5rem;
+        border: none;
+        outline: none;
+        resize: none;
+        font-family: inherit;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        min-height: 200px;
+    }
+
+    /* Composer Footer */
+    .composer-footer {
+        padding: 1.5rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .attachment-area {
+        margin-bottom: 1.5rem;
+    }
+
+    .attachment-placeholder {
+        border: 2px dashed var(--color-border);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        text-align: center;
+        color: var(--color-text-light);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .attachment-placeholder:hover {
+        border-color: var(--color-accent);
+        background: rgba(212, 175, 55, 0.05);
+    }
+
+    .attachment-placeholder i {
+        margin-bottom: 0.5rem;
+    }
+
+    .send-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+
+    /* Sidebar */
+    .sidebar-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .sidebar-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .sidebar-card h4 {
+        margin-bottom: 1rem;
+        color: var(--color-primary);
+    }
+
+    .security-indicators,
+    .emergency-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .indicator,
+    .emergency-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .indicator i {
+        color: #22c55e;
+        width: 16px;
+        height: 16px;
+    }
+
+    .emergency-item a {
+        color: var(--color-accent);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .incident-types {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .type-item {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+        background: var(--color-secondary);
+        border-radius: 20px;
+        color: var(--color-text);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .report-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .composer-header {
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .field-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .field-row label {
+            width: auto;
+        }
+
+        .send-actions {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<script>
+    // Add interactive behaviors
+    document.querySelector('.attachment-placeholder').addEventListener('click', function() {
+        alert('File attachment functionality would be implemented here');
+    });
+
+    document.querySelector('.btn:last-child').addEventListener('click', function(e) {
+        e.preventDefault();
+        this.innerHTML = '<i data-feather="check"></i> Report Sent';
+        this.style.background = '#22c55e';
+        feather.replace();
+        
+        setTimeout(() => {
+            this.innerHTML = '<i data-feather="send"></i> Send Report';
+            this.style.background = '';
+            feather.replace();
+        }, 2000);
+    });
+</script>
+{% endblock %}
