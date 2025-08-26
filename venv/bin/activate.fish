@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/fyodor/VScode/cyber_assist/venv
+set -gx VIRTUAL_ENV /home/fyodor/VScode/GitProject/Cyber_Assist/venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
