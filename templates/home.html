@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="hero-content text-center">
+            <h1>{{ hero_title }}</h1>
+            <p class="hero-subtitle">{{ hero_subtitle }}</p>
+            <div class="hero-actions mt-4">
+                <a href="/report" class="btn">
+                    <i data-feather="shield"></i>
+                    Report Incident
+                </a>
+                <a href="/chat" class="btn btn-outline">
+                    <i data-feather="message-circle"></i>
+                    Get Help
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="stats-section section">
+    <div class="container">
+        <div class="stats-grid">
+            {% for stat in stats %}
+            <div class="stat-item text-center">
+                <div class="stat-number">{{ stat.number }}</div>
+                <div class="stat-label">{{ stat.label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="features-section section">
+    <div class="container">
+        <div class="section-header text-center mb-4">
+            <h2>Comprehensive Protection</h2>
+            <p>Everything you need to stay secure in the digital world</p>
+        </div>
+        <div class="features-grid">
+            {% for feature in features %}
+            <div class="feature-card card">
+                <div class="card-content">
+                    <div class="feature-icon">
+                        <i data-feather="{{ feature.icon }}"></i>
+                    </div>
+                    <h4>{{ feature.title }}</h4>
+                    <p>{{ feature.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="quotes-section section">
+    <div class="container">
+        <div class="section-header text-center mb-4">
+            <h2>Security Insights</h2>
+        </div>
+        <div class="quotes-grid">
+            {% for quote in quotes %}
+            <div class="quote-card card">
+                <div class="card-content">
+                    <blockquote>
+                        <p>"{{ quote.text }}"</p>
+                        <cite>— {{ quote.author }}</cite>
+                    </blockquote>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-white) 100%);
+        padding: 6rem 0;
+        margin-bottom: 0;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+        color: var(--color-primary);
+        margin-bottom: 1rem;
+        font-weight: 300;
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        color: var(--color-text-light);
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* Stats Section */
+    .stats-section {
+        background: var(--color-white);
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+
+    .stat-item {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 300;
+        color: var(--color-accent);
+        font-family: var(--font-heading);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--color-text-light);
+    }
+
+    /* Features Section */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .feature-card {
+        transition: var(--transition);
+    }
+
+    .card-content {
+        padding: 2rem;
+    }
+
+    .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--color-secondary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: var(--color-accent);
+    }
+
+    .feature-icon i {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Quotes Section */
+    .quotes-section {
+        background: var(--color-secondary);
+    }
+
+    .quotes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .quote-card {
+        background: var(--color-white);
+    }
+
+    blockquote {
+        text-align: center;
+    }
+
+    blockquote p {
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--color-text);
+        margin-bottom: 1rem;
+    }
+
+    cite {
+        font-style: normal;
+        color: var(--color-text-light);
+        font-size: 0.9rem;
+    }
+
+    .section-header h2 {
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+        font-size: 1.1rem;
+        color: var(--color-text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+        
+        .hero-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .features-grid,
+        .quotes-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}

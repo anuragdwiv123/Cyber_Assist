@@ -1,34 +1,30 @@
 from flask import Flask, render_template
-from config.settings import Config
-from routes.chatbot_routes import chatbot_bp
-from routes.report_routes import report_bp
-from routes.awareness_routes import awareness_bp
-from routes.helpline_routes import helpline_bp
-from database.models import db
+from data.content import get_home_content, get_news_content, get_resources_content
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Config)
+app = Flask(__name__)
 
-    # Initialize DB
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
+@app.route('/')
+def home():
+    content = get_home_content()
+    return render_template('home.html', **content)
 
-    # Register Blueprints
-    app.register_blueprint(chatbot_bp, url_prefix="/chatbot")
-    app.register_blueprint(report_bp, url_prefix="/report")
-    app.register_blueprint(awareness_bp, url_prefix="/news")
-    app.register_blueprint(helpline_bp, url_prefix="/helpline")
+@app.route('/news')
+def news():
+    articles = get_news_content()
+    return render_template('news.html', articles=articles)
 
-    # Home route
-    @app.route("/")
-    def home():
-        return render_template("base.html")
+@app.route('/report')
+def report():
+    return render_template('report.html')
 
-    return app
+@app.route('/chat')
+def chat():
+    return render_template('chat.html')
 
+@app.route('/resources')
+def resources():
+    content = get_resources_content()
+    return render_template('resources.html', **content)
 
-if __name__ == "__main__":
-    app = create_app()
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)

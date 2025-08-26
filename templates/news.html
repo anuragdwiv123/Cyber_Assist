@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <div class="header-content">
+            <h1>Cybersecurity News</h1>
+            <p>Stay informed about the latest threats and security updates</p>
+        </div>
+    </div>
+</div>
+
+<section class="news-section section">
+    <div class="container">
+        <div class="news-list">
+            {% for article in articles %}
+            <div class="news-item card">
+                <div class="news-content">
+                    <div class="news-header">
+                        <div class="news-meta">
+                            <span class="news-category category-{{ article.severity }}">{{ article.category }}</span>
+                            <span class="news-date">{{ article.date }}</span>
+                        </div>
+                        <div class="severity-indicator severity-{{ article.severity }}">
+                            <i data-feather="alert-circle"></i>
+                        </div>
+                    </div>
+                    <h3 class="news-title">{{ article.title }}</h3>
+                    <div class="news-placeholder">
+                        <div class="placeholder-lines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line short"></div>
+                        </div>
+                        <div class="placeholder-action">
+                            <span class="read-more">Read more</span>
+                            <i data-feather="arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .page-header {
+        background: var(--color-secondary);
+        padding: 3rem 0;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .header-content {
+        text-align: center;
+    }
+
+    .header-content h1 {
+        color: var(--color-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .header-content p {
+        font-size: 1.1rem;
+        color: var(--color-text-light);
+    }
+
+    /* News Items */
+    .news-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .news-item {
+        transition: var(--transition);
+        cursor: pointer;
+    }
+
+    .news-item:hover {
+        transform: translateX(8px);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .news-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .news-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .news-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .news-category {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .category-critical {
+        background: #fee;
+        color: #c53030;
+    }
+
+    .category-high {
+        background: #fef5e7;
+        color: #dd6b20;
+    }
+
+    .category-medium {
+        background: #e6fffa;
+        color: #38b2ac;
+    }
+
+    .category-info {
+        background: #ebf8ff;
+        color: #3182ce;
+    }
+
+    .news-date {
+        font-size: 0.9rem;
+        color: var(--color-text-light);
+    }
+
+    .severity-indicator {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .severity-critical {
+        background: #fee;
+        color: #c53030;
+    }
+
+    .severity-high {
+        background: #fef5e7;
+        color: #dd6b20;
+    }
+
+    .severity-medium {
+        background: #e6fffa;
+        color: #38b2ac;
+    }
+
+    .severity-info {
+        background: #ebf8ff;
+        color: #3182ce;
+    }
+
+    .news-title {
+        font-size: 1.25rem;
+        color: var(--color-primary);
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    /* Placeholder Content */
+    .news-placeholder {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 1rem;
+    }
+
+    .placeholder-lines {
+        flex: 1;
+    }
+
+    .line {
+        height: 12px;
+        background: linear-gradient(90deg, var(--color-border) 0%, #f0f0f0 50%, var(--color-border) 100%);
+        border-radius: 6px;
+        margin-bottom: 8px;
+        animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    .line.short {
+        width: 70%;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: -200px 0;
+        }
+        100% {
+            background-position: calc(200px + 100%) 0;
+        }
+    }
+
+    .placeholder-action {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-accent);
+        font-size: 0.9rem;
+        margin-left: 2rem;
+    }
+
+    .placeholder-action i {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .news-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .news-meta {
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .placeholder-action {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+
+        .news-placeholder {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+</style>
+
+<script>
+    // Add click handlers for news items
+    document.querySelectorAll('.news-item').forEach(item => {
+        item.addEventListener('click', function() {
+            // Simulate loading state
+            this.style.opacity = '0.7';
+            setTimeout(() => {
+                this.style.opacity = '1';
+                // In a real app, this would navigate to the full article
+                console.log('Opening article...');
+            }, 300);
+        });
+    });
+</script>
+{% endblock %}
